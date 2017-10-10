@@ -57,5 +57,25 @@
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
+    <div class="content">
+      {% block content %}
+
+      {% endblock %}
+    </div>
   </body>
+  {% block inlines %}
+
+  {% endblock %}
+  <style>
+    div.content{
+      width: 1000px;
+      height: auto;
+      display: flex;
+      flex-flow: column wrap;
+      justify-content: flex-start;
+      align-items: flex-start;
+      float: none;
+      margin: 0 auto;
+    }
+  </style>
 </html>

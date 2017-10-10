@@ -1,0 +1,76 @@
+{% extends 'hackathon/base.html' %}
+
+{% block content %}
+<div class="table">
+    <h1 class="table-heading">Your Links</h1>
+    {% for link in links %}
+    <div class="link">
+        <div class="name"><p>{{ link.name }}</p></div>
+        <div class="link-cta"><a target="_blank" href="{{ link.url }}">LINK</a></div>
+        <div class="is-link">{{link.is_link}}</div>
+        <div class="delete" data-id="{{ link.id }}"><a href='/link/delete-link/?id={{ link.id }}' class="glyphicon glyphicon-remove"></a></div>
+    </div>
+    {% endfor %}
+</div>
+<div class="add-container"><a href="/link/create-new-link/" class="add-btn">
+        <div class="img"></div>
+        <p class="text-link">Create new link</p>
+    </a></div>
+{% endblock %}
+
+
+{% block inlines %}
+<style>
+    .table{
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    div.link{
+        border: 1px solid black;
+        width: 100%;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    div.link:hover{
+        background-color: #c1d7f1;
+    }
+
+    div.link > div.name + div.link-cta + div.delete{
+        padding: 20px;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    div.link > div.name + div.link-cta{
+        border-right: 1px solid black;
+    }
+
+    div.link div.name p{
+        font-weight: bold;
+    }
+
+    div.link div.name{
+        width: 75%;
+    }
+
+    div.link div.link-cta{
+        width: 20%;
+    }
+
+    div.link div.delete{
+        width: 5%;
+    }
+
+    p{
+        margin-bottom: 0px;
+    }
+</style>
+{% endblock %}

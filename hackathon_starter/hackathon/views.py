@@ -255,7 +255,7 @@ def index(request):
 
     else:
         if request.GET.items():
-            user = User.objects.get(username = request.user.username)
+            user = User.objects.get(username=request.user.username)
             if profile_track == 'github':
                 code = request.GET['code']
                 getGithub.get_access_token(code)
@@ -750,6 +750,7 @@ def register(request):
             'hackathon/register.html',
             {'user_form': user_form, 'registered': registered} )
 
+
 def user_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -760,7 +761,7 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect('/hackathon/api/')
+                return HttpResponseRedirect('/link/dashboard/')
             else:
                 return HttpResponse("Your Django Hackathon account is disabled.")
         else:
@@ -769,6 +770,7 @@ def user_login(request):
 
     else:
         return render(request, 'hackathon/login.html', {})
+
 
 def user_logout(request):
     logout(request)
@@ -781,11 +783,13 @@ def instagram_login(request):
     instagram_url = getInstagram.get_authorize_url()
     return HttpResponseRedirect(instagram_url)
 
+
 def tumblr_login(request):
     global profile_track
     profile_track = 'tumblr'
     tumblr_url = getTumblr.authorize_url()
     return HttpResponseRedirect(tumblr_url)
+
 
 def twitter_login(request):
     global profile_track
@@ -793,17 +797,20 @@ def twitter_login(request):
     twitter_url = getTwitter.get_authorize_url()
     return HttpResponseRedirect(twitter_url)
 
+
 def github_login(request):
     global profile_track
     profile_track = 'github'
     github_url = getGithub.get_authorize_url()
     return HttpResponseRedirect(github_url)
 
+
 def linkedin_login(request):
     global profile_track
     profile_track = 'linkedin'
     linkedin_url = getLinkedIn.get_authorize_url()
     return HttpResponseRedirect(linkedin_url)
+
 
 def facebook_login(request):
     global profile_track
@@ -818,11 +825,13 @@ def google_login(request):
     google_url = getGoogle.get_authorize_url()
     return HttpResponseRedirect(google_url)
 
+
 def dropbox_login(request):
     global profile_track
     profile_track = 'dropbox'
     dropbox_url = getDropbox.get_authorize_url()
     return HttpResponseRedirect(dropbox_url)
+
 
 def foursquare_login(request):
     global profile_track

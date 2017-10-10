@@ -1,0 +1,23 @@
+{% extends 'hackathon/base.html' %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Let's create new link</h2>
+    <form action="/link/create-link/" method='POST'>    
+        {% csrf_token %}
+        {% load bootstrap %}
+        <input type="text" name='name' placeholder="Give it a name">
+        <input type="text" name='url' placeholder="Here paste URL you want to save">
+        <br>
+        <input type="checkbox" name='is_link' value='is_link'>
+        <label for="is_link">Is Box?</label>
+        <input type="hidden" value='0' name='parrent'>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Aaand let's save it!</button>
+          <input type="hidden" name="submit" value="submit" />
+    </form>
+</div>
+{% endblock %}
+
+{% block inlines %}
+
+{% endblock %}
